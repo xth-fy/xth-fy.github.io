@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum‑scale=1.0, user‑scalable=no"/>
+  <title>生日快乐｜李晓涵</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      min-height:100vh;
+      background: linear-gradient(135deg,#ff7eb3,#ff758c,#ffd452);
+      font-family:"Microsoft Yahei",sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .cover{
+      background:#ffffff;
+      width:90%;
+      max-width:520px;
+      padding:70px 30px;
+      border-radius:24px;
+      box-shadow:0 10px 40px rgba(255,60,120,0.35);
+      text-align:center;
+      cursor:pointer;
+      transition: transform 0.3s ease;
+      z-index:10;
+    }
+    .cover:hover{transform: scale(1.03);}
+    .cover h2{
+      color:#e6396b;
+      font-size:28px;
+      margin-bottom:16px;
+    }
+    .cover-tip{font-size:17px;color:#888;}
+    .card{
+      display:none;
+      background:#fff;
+      width:90%;
+      max-width:520px;
+      padding:60px 24px;
+      border-radius:24px;
+      box-shadow:0 10px 40px rgba(255,60,120,0.35);
+      text-align:center;
+      position:relative;
+      z-index:2;
+    }
+    h1{
+      font-size:30px;
+      color:#e6396b;
+      margin-bottom:20px;
+    }
+    .sub{font-size:17px;color:#666;margin-bottom:30px;}
+    .wish{
+      font-size:19px;
+      color:#444;
+      line-height:1.9;
+    }
+    .confetti{
+      position:fixed;
+      width:10px;height:10px;
+      opacity:0.8;
+      animation:fall 5s linear infinite;
+      display:none;
+    }
+    @keyframes fall{
+      0%{transform:translateY(-10vh) rotate(0deg);}
+      100%{transform:translateY(110vh) rotate(720deg);}
+    }
+  </style>
+</head>
+<body>
+<div class="cover" id="coverBox">
+  <h2>🎂 生日贺卡</h2>
+  <div class="cover-tip">点击打开生日贺卡</div>
+</div>
+<div class="card" id="cardBox">
+  <h1>李晓涵19岁生日快乐</h1>
+  <div class="wish">
+    愿新的一岁闪闪发光<br>
+    平安喜乐，万事顺意<br>
+    岁岁无忧，步步欢喜🎂
+  </div>
+</div>
+<script>
+const coverBox = document.getElementById('coverBox');
+const cardBox = document.getElementById('cardBox');
+const colors = ['#ff4757','#ffd32a','#2ed573','#1e90ff','#ff6b81'];
+function createConfetti(){
+  const el = document.createElement('div');
+  el.classList.add('confetti');
+  el.style.left = Math.random()*100+'vw';
+  el.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+  el.style.animationDelay = Math.random()*5+'s';
+  document.body.appendChild(el);
+  return el;
+}
+let confettiList = [];
+for(let i=0;i<80;i++) confettiList.push(createConfetti());
+coverBox.addEventListener('click',()=>{
+  coverBox.style.display = 'none';
+  cardBox.style.display = 'block';
+  confettiList.forEach(item=>item.style.display='block');
+})
+</script>
+</body>
+</html>
